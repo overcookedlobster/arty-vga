@@ -63,7 +63,7 @@ module vga_controller (
     wire [9:0] y_pos = v_count;
     
     reg [25:0] color_counter;
-    reg color_state;
+    reg [1:0] color_state;
     
     always @(posedge clk or posedge reset) begin
         if (reset) begin
@@ -72,15 +72,15 @@ module vga_controller (
         end else begin
             if (color_counter == 26'd50_000_000) begin
                 color_counter <= 0;
-                color_state <= ~color_state;
+                color_state <= (color_state == 2'd2) ? 2'd0 : color_state + 1;
             end else begin
                 color_counter <= color_counter + 1;
             end
         end
     end
     
-    assign red   = video_on ? (color_state ? 4'hF : 4'h0) : 4'h0;
-    assign green = video_on ? (color_state ? 4'h0 : 4'hF) : 4'h0;
-    assign blue  = video_on ? 4'h0 : 4'h0;
+    assign red   = video_on ? (color_state == 2'd0 ? 4'hF : 4'h0) : 4'h0;
+    assign green = video_on ? (color_state == 2'd1 ? 4'hF : 4'h0) : 4'h0;
+    assign blue  = video_on ? (color_state == 2'd2 ? 4'hF : 4'h0) : 4'h0;
 
 endmodule

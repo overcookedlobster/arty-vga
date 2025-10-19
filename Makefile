@@ -9,7 +9,7 @@ program:
 	openFPGALoader -b arty_a7_100t build/top.bit
 
 view:
-	ffplay -f v4l2 -input_format mjpeg -video_size 640x480 -framerate 60 /dev/video3
+	ffplay -f v4l2 -input_format mjpeg -video_size 640x480 -framerate 60 /dev/video2
 
 clean:
 	rm -rf build *.jou *.log .Xil clk_wiz_0 vivado*
