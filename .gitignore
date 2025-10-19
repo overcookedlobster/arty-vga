@@ -1,0 +1,13 @@
+build/
+*.jou
+*.log
+.Xil/
+clk_wiz_0/
+vivado*
+*.dcp
+*.rpt
+*.bit
+*.ltx
+*.debug
+.cache/
+NA/
