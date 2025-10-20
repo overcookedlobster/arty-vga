@@ -11,3 +11,5 @@ vivado*
 *.debug
 .cache/
 NA/
+.gen/
+.srcs/
